@@ -21,4 +21,18 @@ public class HerfController {
         return "profile";
     }
 
+    @RequestMapping("/app/index")
+    private String emailIndex(ModelAndView modelAndView){
+        return "app/index";
+    }
+
+    @RequestMapping("/page-error")
+    private String errorPage(ModelAndView modelAndView){
+        return "pages-error";
+    }
+
+    @RequestMapping("/page-error-500")
+    private String error500Page(ModelAndView modelAndView){
+        return "pages-error-500";
+    }
 }
