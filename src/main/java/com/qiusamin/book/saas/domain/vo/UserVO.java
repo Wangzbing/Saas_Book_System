@@ -20,5 +20,6 @@ public class UserVO {
     private String userCountry;
     private Integer userStatus;
     private String userPhone;
-    private String userImg;
+    private String headImage;
+    private String userPassword;
 }

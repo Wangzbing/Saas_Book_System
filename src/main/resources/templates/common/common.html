@@ -88,7 +88,7 @@
         <div class="iq-navbar-custom">
             <div class="iq-sidebar-logo">
                 <div class="top-logo">
-                    <a href="index.html" class="logo">
+                    <a th:href="@{/index}" class="logo">
                         <img src="../static/images/logo.gif" class="img-fluid" alt="">
                         <span>vito</span>
                     </a>
@@ -134,10 +134,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="search-toggle iq-waves-effect" href="#"><i class="ri-calendar-line"></i></a>
-                            <div class="iq-sub-dropdown">
-                                <div class="calender-small"></div>
-                            </div>
+                            <a class="search-toggle iq-waves-effect" th:href="@{/lock}"><i class="ri-lock-unlock-line"></i></a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="search-toggle iq-waves-effect">
@@ -280,9 +277,9 @@
                 <ul class="navbar-list">
                     <li>
                         <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
-                            <img src="../static/images/user/1.jpg" class="img-fluid rounded mr-3" alt="user">
+                            <img th:src="${session.userInfo.headImage}" class="img-fluid rounded mr-3" alt="user">
                             <div class="caption">
-                                <h6 class="mb-0 line-height">Nik jone</h6>
+                                <h6 class="mb-0 line-height" th:text="${session.userInfo.userName}">Nik jone</h6>
                                 <span class="font-size-12">Available</span>
                             </div>
                         </a>
@@ -290,10 +287,10 @@
                             <div class="iq-card shadow-none m-0">
                                 <div class="iq-card-body p-0 ">
                                     <div class="bg-primary p-3">
-                                        <h5 class="mb-0 text-white line-height">Hello Nik jone</h5>
+                                        <h5 class="mb-0 text-white line-height" th:text="'Hello  '+${session.userInfo.userName}"></h5>
                                         <span class="text-white font-size-12">Available</span>
                                     </div>
-                                    <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
+                                    <a th:href="@{/profile(userId=${session.userInfo.userId})}" class="iq-sub-card iq-bg-primary-hover">
                                         <div class="media align-items-center">
                                             <div class="rounded iq-card-icon iq-bg-primary">
                                                 <i class="ri-file-user-line"></i>
@@ -304,7 +301,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="profile-edit.html" class="iq-sub-card iq-bg-primary-hover">
+                                    <a th:href="@{/profile/edit(userId=${session.userInfo.userId})}" class="iq-sub-card iq-bg-primary-hover">
                                         <div class="media align-items-center">
                                             <div class="rounded iq-card-icon iq-bg-primary">
                                                 <i class="ri-profile-line"></i>
@@ -315,30 +312,8 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="account-setting.html" class="iq-sub-card iq-bg-primary-hover">
-                                        <div class="media align-items-center">
-                                            <div class="rounded iq-card-icon iq-bg-primary">
-                                                <i class="ri-account-box-line"></i>
-                                            </div>
-                                            <div class="media-body ml-3">
-                                                <h6 class="mb-0 ">Account settings</h6>
-                                                <p class="mb-0 font-size-12">Manage your account parameters.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="privacy-setting.html" class="iq-sub-card iq-bg-primary-hover">
-                                        <div class="media align-items-center">
-                                            <div class="rounded iq-card-icon iq-bg-primary">
-                                                <i class="ri-lock-line"></i>
-                                            </div>
-                                            <div class="media-body ml-3">
-                                                <h6 class="mb-0 ">Privacy Settings</h6>
-                                                <p class="mb-0 font-size-12">Control your privacy parameters.</p>
-                                            </div>
-                                        </div>
-                                    </a>
                                     <div class="d-inline-block w-100 text-center p-3">
-                                        <a class="bg-primary iq-sign-btn" href="sign-in.html" role="button">Sign out<i
+                                        <a class="bg-primary iq-sign-btn" th:href="@{/logout}" role="button">Sign out<i
                                                 class="ri-login-box-line ml-2"></i></a>
                                     </div>
                                 </div>
@@ -352,6 +327,30 @@
     </div>
     <!-- TOP Nav Bar END -->
 </div>
+<div th:fragment="commonSide">
+    <div class="sign-in-detail text-white">
+        <a class="sign-in-logo mb-5" href="#"><img src="../static/images/logo-white.png" class="img-fluid" alt="logo"></a>
+        <div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true"
+             data-items="1" data-items-laptop="1" data-items-tab="1" data-items-mobile="1"
+             data-items-mobile-sm="1" data-margin="0">
+            <div class="item">
+                <img src="../static/images/login/1.png" class="img-fluid mb-4" alt="logo">
+                <h4 class="mb-1 text-white">it's your web System</h4>
+                <p>Choose the SaaS library management platform that suits you best</p>
+            </div>
+            <div class="item">
+                <img src="../static/images/login/1.png" class="img-fluid mb-4" alt="logo">
+                <h4 class="mb-1 text-white">Manage your orders</h4>
+                <p>Manage your business such as books and orders</p>
+            </div>
+            <div class="item">
+                <img src="../static/images/login/1.png" class="img-fluid mb-4" alt="logo">
+                <h4 class="mb-1 text-white">Stable system</h4>
+                <p>Can support the services you need</p>
+            </div>
+        </div>
+    </div>
+</div>
 <footer th:fragment="commonFooter">
     <!-- Footer -->
     <footer class="bg-white iq-footer">
@@ -359,8 +358,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li class="list-inline-item"><a href="terms-of-service.html">Terms of Use</a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0);">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0);">Terms of Use</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-6 text-right">
