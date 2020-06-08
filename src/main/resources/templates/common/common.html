@@ -37,40 +37,47 @@
         <div id="sidebar-scrollbar">
             <nav class="iq-sidebar-menu">
                 <ul class="iq-menu">
-                    <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Dashboard</span></li>
+                    <li class="iq-menu-title">
+                        <i class="ri-subtract-line"></i>
+                        <span>Book Center</span></li>
                     <!--index page-->
                     <li>
-                        <a th:href="@{/index}" class="iq-waves-effect"><i
-                                class="ri-home-4-line"></i><span>Index</span></a>
-                    </li>
-                    <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Apps</span></li>
-                    <!-- todos list-->
-                    <li><a th:href="@{/todo}" class="iq-waves-effect"><i class="ri-chat-check-line"></i><span>Todo</span></a>
+                        <a th:href="@{/book/list}" class="iq-waves-effect"><i
+                                class="ri-line-line"></i><span>Book List</span></a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);" class="iq-waves-effect"><i
-                                class="ri-airplay-fill"></i><span>Message</span><i
-                                class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-                        <ul class="iq-submenu">
-                            <li><a th:href="@{/message/list}" class="user_list"><i class="ri-profile-line"></i>SaaS Message</a></li>
-                            <li><a th:href="@{/message/add}"><i class="ri-user-add-line"></i>Message Add</a></li>
-                            <li><a th:href="@{/message/listAll}"><i class="ri-file-list-line"></i>Message List</a></li>
-                        </ul>
+                        <a th:href="@{/book/add}" class="iq-waves-effect"><i
+                                class="ri-scan-line"></i><span>Book Add</span></a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);" class="iq-waves-effect"><i
-                                class="ri-user-line"></i><span>User</span><i
-                                class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-                        <ul class="iq-submenu">
-                            <li><a th:href="@{/profile}"><i class="ri-profile-line"></i>User Profile</a></li>
-                            <li><a th:href="@{/profile/edit}"><i class="ri-file-edit-line"></i>User Edit</a></li>
-                            <li><a th:href="@{/user/add}"><i class="ri-user-add-line"></i>User Add</a></li>
-                            <li><a th:href="@{/user/list}" class="menu_list"><i class="ri-file-list-line"></i>User List</a></li>
-                        </ul>
+                        <a th:href="@{/book/edit}" class="iq-waves-effect"><i
+                                class="ri-edit-box-line"></i><span>Book Edit</span></a>
+                    </li>
+                    <li class="iq-menu-title"><i class="ri-subtract-line">
+                    </i><span>User Center</span></li>
+                    <li>
+                        <a th:href="@{/profile(${session.userInfo.userId})}" class="iq-waves-effect">
+                            <i class="ri-profile-line"></i><span>User Profile</span></a>
+                    </li>
+                    <li><a th:href="@{/profile/edit(${session.userInfo.userId})}" class="iq-waves-effect"><i class="ri-file-edit-line"></i>User
+                        <span>Edit</span></a></li>
+                    <li><a th:href="@{/user/add}" class="iq-waves-effect"><i class="ri-user-add-line" ></i><span>User Add</span></a></li>
+                    <li><a th:href="@{/user/list}" class="menu_list iq-waves-effect"><i class="ri-file-list-line"></i><span>User List</span></a></li>
+                    <li class="iq-menu-title"><i class="ri-subtract-line">
+                    </i><span>Message Center</span></li>
+                    <li><a th:href="@{/message/list}" class="user_list iq-waves-effect"><i class="ri-profile-line"></i><span>SaaS Message</span></a>
+                    </li>
+                    <li><a th:href="@{/message/add}" class="iq-waves-effect" ><i class="ri-user-add-line"></i><span>Message Add</span></a></li>
+                    <li><a th:href="@{/message/listAll}" class="iq-waves-effect"><i class="ri-file-list-line"></i><span>Message List</span></a></li>
+                    <li class="iq-menu-title"><i class="ri-subtract-line">
+                    </i><span>App </span></li>
+                    <li><a th:href="@{/todo}" class="iq-waves-effect"><i
+                            class="ri-chat-check-line"></i><span>Todo</span></a>
                     </li>
                     <li><a th:href="@{/calendar}" class="iq-waves-effect"><i
                             class="ri-calendar-2-line"></i><span>Calendar</span></a></li>
-                    <li><a th:href="@{/chat}" class="iq-waves-effect"><i class="ri-message-line"></i><span>Chat</span></a>
+                    <li><a th:href="@{/chat}" class="iq-waves-effect"><i
+                            class="ri-message-line"></i><span>Chat</span></a>
                     </li>
                     <li><a th:href="@{/coming}" class="iq-waves-effect"><i
                             class="ri-shopping-cart-line"></i><span>eCommerce</span><small
@@ -120,21 +127,26 @@
                                     style="height: 16px; width: 16px;"/> English <i
                                     class="ri-arrow-down-s-line"></i></a>
                             <div class="iq-sub-dropdown">
-                                <a class="iq-sub-card" href="#"><img src="../static/images/small/flag-02.png" alt="img-flaf"
+                                <a class="iq-sub-card" href="#"><img src="../static/images/small/flag-02.png"
+                                                                     alt="img-flaf"
                                                                      class="img-fluid mr-2"/>French</a>
-                                <a class="iq-sub-card" href="#"><img src="../static/images/small/flag-03.png" alt="img-flaf"
+                                <a class="iq-sub-card" href="#"><img src="../static/images/small/flag-03.png"
+                                                                     alt="img-flaf"
                                                                      class="img-fluid mr-2"/>Spanish</a>
-                                <a class="iq-sub-card" href="#"><img src="../static/images/small/flag-04.png" alt="img-flaf"
+                                <a class="iq-sub-card" href="#"><img src="../static/images/small/flag-04.png"
+                                                                     alt="img-flaf"
                                                                      class="img-fluid mr-2"/>Italian</a>
-                                <a class="iq-sub-card" href="#"><img src="../static/images/small/flag-05.png" alt="img-flaf"
+                                <a class="iq-sub-card" href="#"><img src="../static/images/small/flag-05.png"
+                                                                     alt="img-flaf"
                                                                      class="img-fluid mr-2"/>German</a>
-                                <a class="iq-sub-card" href="#"><img src="../static/images/small/flag-06.png" alt="img-flaf"
+                                <a class="iq-sub-card" href="#"><img src="../static/images/small/flag-06.png"
+                                                                     alt="img-flaf"
                                                                      class="img-fluid mr-2"/>Japanese</a>
 
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="search-toggle iq-waves-effect" th:href="@{/lock}"><i class="ri-lock-unlock-line"></i></a>
+                            <a class="search-toggle iq-waves-effect" th:href="@{/lock}"><i class="ri-lock-line"></i></a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="search-toggle iq-waves-effect">
@@ -152,7 +164,8 @@
                                         <a href="#" class="iq-sub-card">
                                             <div class="media align-items-center">
                                                 <div class="">
-                                                    <img class="avatar-40 rounded" src="../static/images/user/01.jpg" alt="">
+                                                    <img class="avatar-40 rounded" src="../static/images/user/01.jpg"
+                                                         alt="">
                                                 </div>
                                                 <div class="media-body ml-3">
                                                     <h6 class="mb-0 ">Emma Watson Nik</h6>
@@ -164,7 +177,8 @@
                                         <a href="#" class="iq-sub-card">
                                             <div class="media align-items-center">
                                                 <div class="">
-                                                    <img class="avatar-40 rounded" src="../static/images/user/02.jpg" alt="">
+                                                    <img class="avatar-40 rounded" src="../static/images/user/02.jpg"
+                                                         alt="">
                                                 </div>
                                                 <div class="media-body ml-3">
                                                     <h6 class="mb-0 ">New customer is join</h6>
@@ -176,7 +190,8 @@
                                         <a href="#" class="iq-sub-card">
                                             <div class="media align-items-center">
                                                 <div class="">
-                                                    <img class="avatar-40 rounded" src="../static/images/user/03.jpg" alt="">
+                                                    <img class="avatar-40 rounded" src="../static/images/user/03.jpg"
+                                                         alt="">
                                                 </div>
                                                 <div class="media-body ml-3">
                                                     <h6 class="mb-0 ">Two customer is left</h6>
@@ -188,7 +203,8 @@
                                         <a href="#" class="iq-sub-card">
                                             <div class="media align-items-center">
                                                 <div class="">
-                                                    <img class="avatar-40 rounded" src="../static/images/user/04.jpg" alt="">
+                                                    <img class="avatar-40 rounded" src="../static/images/user/04.jpg"
+                                                         alt="">
                                                 </div>
                                                 <div class="media-body ml-3">
                                                     <h6 class="mb-0 ">New Mail from Fenny</h6>
@@ -216,7 +232,8 @@
                                         <a href="#" class="iq-sub-card">
                                             <div class="media align-items-center">
                                                 <div class="">
-                                                    <img class="avatar-40 rounded" src="../static/images/user/01.jpg" alt="">
+                                                    <img class="avatar-40 rounded" src="../static/images/user/01.jpg"
+                                                         alt="">
                                                 </div>
                                                 <div class="media-body ml-3">
                                                     <h6 class="mb-0 ">Nik Emma Watson</h6>
@@ -227,7 +244,8 @@
                                         <a href="#" class="iq-sub-card">
                                             <div class="media align-items-center">
                                                 <div class="">
-                                                    <img class="avatar-40 rounded" src="../static/images/user/02.jpg" alt="">
+                                                    <img class="avatar-40 rounded" src="../static/images/user/02.jpg"
+                                                         alt="">
                                                 </div>
                                                 <div class="media-body ml-3">
                                                     <h6 class="mb-0 ">Lorem Ipsum Watson</h6>
@@ -238,7 +256,8 @@
                                         <a href="#" class="iq-sub-card">
                                             <div class="media align-items-center">
                                                 <div class="">
-                                                    <img class="avatar-40 rounded" src="../static/images/user/03.jpg" alt="">
+                                                    <img class="avatar-40 rounded" src="../static/images/user/03.jpg"
+                                                         alt="">
                                                 </div>
                                                 <div class="media-body ml-3">
                                                     <h6 class="mb-0 ">Why do we use it?</h6>
@@ -249,7 +268,8 @@
                                         <a href="#" class="iq-sub-card">
                                             <div class="media align-items-center">
                                                 <div class="">
-                                                    <img class="avatar-40 rounded" src="../static/images/user/04.jpg" alt="">
+                                                    <img class="avatar-40 rounded" src="../static/images/user/04.jpg"
+                                                         alt="">
                                                 </div>
                                                 <div class="media-body ml-3">
                                                     <h6 class="mb-0 ">Variations Passages</h6>
@@ -260,7 +280,8 @@
                                         <a href="#" class="iq-sub-card">
                                             <div class="media align-items-center">
                                                 <div class="">
-                                                    <img class="avatar-40 rounded" src="../static/images/user/05.jpg" alt="">
+                                                    <img class="avatar-40 rounded" src="../static/images/user/05.jpg"
+                                                         alt="">
                                                 </div>
                                                 <div class="media-body ml-3">
                                                     <h6 class="mb-0 ">Lorem Ipsum generators</h6>
@@ -287,10 +308,12 @@
                             <div class="iq-card shadow-none m-0">
                                 <div class="iq-card-body p-0 ">
                                     <div class="bg-primary p-3">
-                                        <h5 class="mb-0 text-white line-height" th:text="'Hello  '+${session.userInfo.userName}"></h5>
+                                        <h5 class="mb-0 text-white line-height"
+                                            th:text="'Hello  '+${session.userInfo.userName}"></h5>
                                         <span class="text-white font-size-12">Available</span>
                                     </div>
-                                    <a th:href="@{/profile(userId=${session.userInfo.userId})}" class="iq-sub-card iq-bg-primary-hover">
+                                    <a th:href="@{/profile(userId=${session.userInfo.userId})}"
+                                       class="iq-sub-card iq-bg-primary-hover">
                                         <div class="media align-items-center">
                                             <div class="rounded iq-card-icon iq-bg-primary">
                                                 <i class="ri-file-user-line"></i>
@@ -301,7 +324,8 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <a th:href="@{/profile/edit(userId=${session.userInfo.userId})}" class="iq-sub-card iq-bg-primary-hover">
+                                    <a th:href="@{/profile/edit(userId=${session.userInfo.userId})}"
+                                       class="iq-sub-card iq-bg-primary-hover">
                                         <div class="media align-items-center">
                                             <div class="rounded iq-card-icon iq-bg-primary">
                                                 <i class="ri-profile-line"></i>
@@ -322,14 +346,14 @@
                     </li>
                 </ul>
             </nav>
-
         </div>
     </div>
     <!-- TOP Nav Bar END -->
 </div>
 <div th:fragment="commonSide">
     <div class="sign-in-detail text-white">
-        <a class="sign-in-logo mb-5" href="#"><img src="../static/images/logo-white.png" class="img-fluid" alt="logo"></a>
+        <a class="sign-in-logo mb-5" href="#"><img src="../static/images/logo-white.png" class="img-fluid"
+                                                   alt="logo"></a>
         <div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true"
              data-items="1" data-items-laptop="1" data-items-tab="1" data-items-mobile="1"
              data-items-mobile-sm="1" data-margin="0">

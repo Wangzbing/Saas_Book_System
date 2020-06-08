@@ -40,6 +40,11 @@ spring:
     #    default-property-inclusion: NON_EMPTY
     deserialization:
       fail_on_unknown_properties: false
+  # servlet max size for fileUpload
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
 # mybatis config
 mybatis:
   mapper-locations:

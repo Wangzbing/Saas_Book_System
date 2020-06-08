@@ -26,6 +26,8 @@ public class SessionConfiguration implements WebMvcConfigurer {
         interceptor.excludePathPatterns("/login");
         //unlock
         interceptor.excludePathPatterns("/unlock");
+        // sign up
+        interceptor.excludePathPatterns("/signUp");
         //login page
         interceptor.excludePathPatterns("/");
         //static source

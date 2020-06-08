@@ -1,0 +1,62 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <head th:insert="common/common::commonHeader"></head>
+</head>
+<body>
+<!-- loader Start -->
+<div id="loading">
+    <div id="loading-center">
+    </div>
+</div>
+<!-- loader END -->
+<!-- Sign in Start -->
+<section class="sign-in-page">
+    <div class="container bg-white mt-5 p-0">
+        <div class="row no-gutters">
+            <div class="col-sm-6 align-self-center">
+                <div class="sign-in-from">
+                    <h1 class="mb-0">Auditing</h1>
+                    <h4 class="mb-1" th:text="'Hi!  '+${data.userName}"></h4>
+                    <p>Your account registration is successful</p>
+                    <H5>Why you can see this page?</H5>
+                    <p>Because the administrator has set up a configuration for the account to be reviewed, you must wait for the review</p>
+                </div>
+            </div>
+            <div class="col-sm-6 text-center" th:insert="common/common::commonSide"></div>
+        </div>
+    </div>
+</section>
+<!-- Sign in END -->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<!-- Appear JavaScript -->
+<script src="../static/js/jquery.appear.js"></script>
+<!-- Countdown JavaScript -->
+<script src="../static/js/countdown.min.js"></script>
+<!-- Counterup JavaScript -->
+<script src="../static/js/waypoints.min.js"></script>
+<script src="../static/js/jquery.counterup.min.js"></script>
+<!-- Wow JavaScript -->
+<script src="../static/js/wow.min.js"></script>
+<!-- Apexcharts JavaScript -->
+<script src="https://cdn.bootcdn.net/ajax/libs/apexcharts/3.11.0/apexcharts.min.js"></script>
+<!-- Slick JavaScript -->
+<script src="../static/js/slick.min.js"></script>
+<!-- Select2 JavaScript -->
+<script src="../static/js/select2.min.js"></script>
+<!-- Owl Carousel JavaScript -->
+<script src="../static/js/owl.carousel.min.js"></script>
+<!-- Magnific Popup JavaScript -->
+<script src="../static/js/jquery.magnific-popup.min.js"></script>
+<!-- Smooth Scrollbar JavaScript -->
+<script src="../static/js/smooth-scrollbar.js"></script>
+<!-- Chart Custom JavaScript -->
+<script src="../static/js/chart-custom.js"></script>
+<!-- Custom JavaScript -->
+<script src="../static/js/custom.js"></script>
+</body>
+</html>

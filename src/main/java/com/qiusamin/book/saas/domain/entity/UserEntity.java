@@ -1,28 +1,24 @@
-package com.qiusamin.book.saas.domain.vo;
-
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
+package com.qiusamin.book.saas.domain.entity;
 
 import java.util.Date;
 
 /**
- * @author gu<br>
+ * @author gu tianbo<br>
  * @version 1.0<br>
  */
-public class UserVO {
+public class UserEntity {
     private Long userId;
     private String userName;
     private String userEmail;
     private Date joinDate;
     private String userCountry;
-    private String userSex;
     private Integer userStatus;
+    private String userSex;
     private String userPhone;
     private String headImage;
     private String userPassword;
-    private MultipartFile headImageFile;
-    private String userComment;
+    private Date createTime;
+    private Boolean deleted;
 
     public Long getUserId() {
         return userId;
@@ -96,27 +92,27 @@ public class UserVO {
         this.userPassword = userPassword;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public String getUserSex() {
         return userSex;
     }
 
     public void setUserSex(String userSex) {
         this.userSex = userSex;
-    }
-
-    public MultipartFile getHeadImageFile() {
-        return headImageFile;
-    }
-
-    public void setHeadImageFile(MultipartFile headImageFile) {
-        this.headImageFile = headImageFile;
-    }
-
-    public String getUserComment() {
-        return userComment;
-    }
-
-    public void setUserComment(String userComment) {
-        this.userComment = userComment;
     }
 }

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qiusamin.book.saas.mapper.IUserMapper">
+    <insert id="addSignUser" useGeneratedKeys="true" parameterType="com.qiusamin.book.saas.domain.entity.UserEntity" keyProperty="userId">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="userId">
+            SELECT LAST_INSERT_ID() AS userId
+        </selectKey>
+        insert into
+            user_info(user_name,user_email,user_head_img,password,user_status,user_join_date,create_time,deleted,user_sex)
+        values(#{userName},#{userEmail},#{headImage},#{userPassword},#{userStatus},#{joinDate},#{createTime},#{deleted},#{userSex})
+    </insert>
 </mapper>

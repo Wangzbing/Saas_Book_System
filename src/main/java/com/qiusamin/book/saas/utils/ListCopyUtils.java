@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 /**
- * @author gu tianbo<br>
- * @version 1.0<br>
+ * list copy utils
  */
 public class ListCopyUtils extends BeanUtils {
     /**

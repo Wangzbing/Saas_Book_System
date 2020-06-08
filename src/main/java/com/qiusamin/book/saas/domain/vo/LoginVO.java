@@ -10,12 +10,26 @@ import javax.validation.constraints.NotBlank;
  * @author gu tianbo<br>
  * @version 1.0<br>
  */
-@Getter
-@Setter
 public class LoginVO {
     @NotBlank
     @Email
     private String email;
     @NotBlank
     private String password;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

@@ -93,14 +93,14 @@
                                         <td th:text="${#dates.format(m.joinDate, 'yyyy-MM-dd')}"></td>
                                         <td>
                                             <div class="flex align-items-center list-user-action">
+                                                <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" disabled
+                                                   title="" data-original-title="Audit" th:href="@{/audit(userId=${m.userId})}"><i
+                                                        class="ri-album-line"></i></a>
                                                 <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
-                                                   title="" data-original-title="Add" href="#"><i
-                                                        class="ri-user-add-line"></i></a>
-                                                <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
-                                                   title="" data-original-title="Edit" href="#"><i
+                                                   title="" data-original-title="Edit" th:href="@{/edit(userId=${m.userId})}"><i
                                                         class="ri-pencil-line"></i></a>
                                                 <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
-                                                   title="" data-original-title="Delete" href="#"><i
+                                                   title="" data-original-title="Delete" th:href="@{/delete(userId=${m.userId})}"><i
                                                         class="ri-delete-bin-line"></i></a>
                                             </div>
                                         </td>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="row justify-content-between mt-3">
                                 <div id="user-list-page-info" class="col-md-6">
-                                    <span>Showing 1 to 5 of 5 entries</span>
+                                    <span th:text="'Showing 1 to 5 of'+${userList.size()}+'entries'"></span>
                                 </div>
                                 <div class="col-md-6">
                                     <nav aria-label="Page navigation example">
