@@ -29,7 +29,7 @@
         <div class="row no-gutters">
             <div class="col-sm-6 align-self-center">
                 <div class="sign-in-from">
-                    <img th:src="${session.userInfo.headImage}" alt="user-image" class="rounded-circle">
+                    <img th:src="${session.userInfo.headImage}" alt="user-image" class="rounded-circle" width="150px" height="150px">
                     <h4 class="mt-3 mb-0" th:text="'Hi !'+${session.userInfo.userName}"></h4>
                     <p>Enter your password to access the admin.</p>
                     <form class="mt-4" method="post" th:action="@{/unlock}">

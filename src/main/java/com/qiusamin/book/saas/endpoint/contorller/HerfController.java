@@ -1,7 +1,6 @@
 package com.qiusamin.book.saas.endpoint.contorller;
 
 import com.qiusamin.book.saas.domain.common.OutParams;
-import com.qiusamin.book.saas.domain.dos.UserDO;
 import com.qiusamin.book.saas.domain.vo.LoginVO;
 import com.qiusamin.book.saas.domain.vo.PasswordVO;
 import com.qiusamin.book.saas.domain.vo.SignUpVO;
@@ -11,21 +10,15 @@ import com.qiusamin.book.saas.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -128,6 +121,7 @@ public class HerfController {
     public String chat(ModelAndView modelAndView){
         return "chat";
     }
+    
     @GetMapping("/lock")
     public String lock(ModelAndView modelAndView,HttpServletRequest request){
         HttpSession session = request.getSession(true);
