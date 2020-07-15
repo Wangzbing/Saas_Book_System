@@ -25,7 +25,7 @@
             width: 55%;
             height: 55%;
             padding: 20px;
-            border: 10px solid orange;
+            border: 10px solid cornsilk;
             background-color: white;
             z-index: 1002;
             overflow: auto;
@@ -90,7 +90,7 @@
                                        aria-describedby="user-list-page-info">
                                     <thead>
                                     <tr>
-                                        <th>Cover</th>
+                                        <th>Index</th>
                                         <th>Name</th>
                                         <th>Author</th>
                                         <th>Publisher</th>
@@ -103,19 +103,19 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="m:${bookList}">
-                                        <td class="text-center"><img th:src="@{${m.cover}}"
-                                                                     class="rounded-circle img-fluid avatar-40"
-                                                                     alt="profile"></td>
+                                        <td class="text-center">
+                                            <img th:src="@{${m.cover}}" class="rounded-circle img-fluid avatar-40" alt="profile">
+                                        </td>
                                         <td th:text="${m.bookName}"></td>
                                         <td th:text="${m.bookAuthor}"></td>
                                         <td th:text="${m.bookPublisher}"></td>
                                         <td th:text="${m.bookScope}"></td>
                                         <td th:if="${m.introduction!=''}">
-                                            <span><a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">introduction</a><br>　　　　
+                                            <span style="top: 10px">
+                                                <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"><span th:text="${m.introduction.substring(0,4)+'....'}"></span></a><br>　　　　
                                             </span>
-                                            <span id="light" class="white_content"><br>　<span th:text="${m.introduction}"></span> <a
-                                                    href="javascript:void(0)"
-                                                    onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">close<br></a><br>　　　　　
+                                            <span id="light" class="white_content"><br>　<span th:text="${m.introduction}"></span>
+                                                <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">close<br></a><br>　　　　　
                                             </span>
                                             <span id="fade" class="black_overlay"></span>
                                         </td>
@@ -123,11 +123,6 @@
                                         <td th:text="${#dates.format(m.publishDate, 'yyyy-MM-dd')}"></td>
                                         <td>
                                             <div class="flex align-items-center list-user-action">
-                                                <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
-                                                   disabled
-                                                   title="" data-original-title="Audit"
-                                                   th:href="@{/audit(userId=${m.bookId})}"><i
-                                                        class="ri-album-line"></i></a>
                                                 <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
                                                    title="" data-original-title="Edit"
                                                    th:href="@{/edit(userId=${m.bookId})}"><i

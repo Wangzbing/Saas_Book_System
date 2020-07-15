@@ -11,7 +11,7 @@
  Target Server Version : 50645
  File Encoding         : 65001
 
- Date: 08/06/2020 17:29:53
+ Date: 15/07/2020 16:41:18
 */
 
 SET NAMES utf8mb4;
@@ -22,12 +22,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `book_info`;
 CREATE TABLE `book_info`  (
+  `book_cover` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'book image',
   `book_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'book id',
   `book_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'book name',
   `book_category_id` bigint(20) NOT NULL COMMENT 'book category id',
   `book_author` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'book author',
   `book_publisher` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'publisher',
-  `published_date` date NOT NULL COMMENT 'Published_date',
+  `published_date` datetime(0) NOT NULL COMMENT 'Published_date',
+  `book_scope` int(11) NOT NULL COMMENT 'book scope',
   `book_price` decimal(10, 2) NOT NULL COMMENT 'Price',
   `book_ISBN` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ISBN',
   `book_brief_introduction` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'introduction',
@@ -36,7 +38,12 @@ CREATE TABLE `book_info`  (
   `deleted` tinyint(1) NOT NULL,
   `create_time` datetime(0) NOT NULL COMMENT 'create time',
   PRIMARY KEY (`book_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of book_info
+-- ----------------------------
+INSERT INTO `book_info` VALUES ('../static/images/user/0d226d114e814d0ebb48fb767481d7d7.jpg', 1, 'one', 1, 'joker', 'publicer', '2020-07-15 00:00:00', 1, 8.50, '0893333', 'this is a intro', 1, 8001, 0, '2020-07-15 16:15:39');
 
 -- ----------------------------
 -- Table structure for category_info
@@ -48,7 +55,14 @@ CREATE TABLE `category_info`  (
   `deleted` tinyint(1) NOT NULL COMMENT 'deleted',
   `category_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'icon name',
   PRIMARY KEY (`category_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of category_info
+-- ----------------------------
+INSERT INTO `category_info` VALUES (1, 'literature', 0, '“');
+INSERT INTO `category_info` VALUES (2, 'popular', 0, '“');
+INSERT INTO `category_info` VALUES (3, 'culture', 0, '”');
 
 -- ----------------------------
 -- Table structure for message_info
@@ -125,15 +139,23 @@ CREATE TABLE `user_info`  (
   `create_time` datetime(0) NOT NULL,
   `deleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES (1, 'admin', 'ca', 'gutianbo@gmail.com', NULL, '01.jpg', '+62 5689678', '123456', 'male', 'USA', 3001, '2020-06-02 08:58:59', '2020-06-02 08:58:59', 0);
-INSERT INTO `user_info` VALUES (2, 'user1', 'c1', 'admin@gmail.com', NULL, '02.jpg', '+65 1234567', '123456', 'female', 'Caneda', 3001, '2020-06-03 16:25:56', '2020-06-03 16:26:03', 0);
-INSERT INTO `user_info` VALUES (3, 'zoe', NULL, 'zoe@gmail.com', 'be a dreamer', '26a04bd4eedc4b1fbd6707cef8f3f8ce.jpg', '+98 8970567', 'Amin6248', 'male', 'USA', 3001, '2020-06-05 10:58:23', '2020-06-05 10:58:23', 0);
+INSERT INTO `user_info` VALUES (1, 'admin', 'ca', 'gutianbo@gmail.com', NULL, '0d226d114e814d0ebb48fb767481d7d7.jpg', '+62 5689678', '123456', 'male', 'USA', 3001, '2020-06-02 08:58:59', '2020-06-02 08:58:59', 0);
+INSERT INTO `user_info` VALUES (2, 'user1', 'c1', 'admin@gmail.com', NULL, '01.jpg', '+65 1234567', '123456', 'female', 'India', 3001, '2020-06-03 16:25:56', '2020-06-03 16:26:03', 0);
+INSERT INTO `user_info` VALUES (3, 'zoe', NULL, 'zoe@gmail.com', 'be a dreamer', '01.jpg', '+98 8970567', 'Amin6248', 'male', 'USA', 3001, '2020-06-05 10:58:23', '2020-06-05 10:58:23', 0);
 INSERT INTO `user_info` VALUES (4, 'Fiona', NULL, 'fiona@gmail.com', NULL, '00.jpg', NULL, '123456', NULL, 'Africa', 3001, '2020-06-05 13:53:29', '2020-06-05 13:53:29', 0);
 INSERT INTO `user_info` VALUES (5, 'Timo', NULL, 'timo@gmail.com', NULL, '00.jpg', NULL, '123456', NULL, 'India', 3003, '2020-06-05 18:46:05', '2020-06-05 18:46:05', 0);
+INSERT INTO `user_info` VALUES (6, 'Zed', NULL, 'zed@gmail.com', 'https://getbootstrap.com', '01.jpg', '+98 8970567', '123456', 'female', 'Caneda', 3001, '2020-06-20 00:16:18', '2020-06-20 00:16:18', 0);
+INSERT INTO `user_info` VALUES (7, 'Simth', NULL, 'simth@gmail.com', NULL, '00.jpg', NULL, '123456', 'male', NULL, 3003, '2020-06-20 01:54:15', '2020-06-20 01:54:15', 0);
+INSERT INTO `user_info` VALUES (8, 'Rouce', NULL, 'rouce@gmail.com', NULL, '00.jpg', NULL, '123456', 'male', NULL, 3001, '2020-06-20 02:10:05', '2020-06-20 02:10:05', 0);
+INSERT INTO `user_info` VALUES (9, 'zoeL', NULL, 'zoel@gmail.com', 'https://getbootstrap.com', '00.jpg', '+98 8970567778', '123', 'male', NULL, 3001, '2020-06-20 03:03:46', '2020-06-20 03:03:46', 0);
+INSERT INTO `user_info` VALUES (10, 'kong', NULL, 'kong@gmail.com', 'https://getbootstrap.com', '00.jpg', '+86 19877888877', '123456', 'male', NULL, 3001, '2020-06-20 03:20:21', '2020-06-20 03:20:21', 0);
+INSERT INTO `user_info` VALUES (11, 'King', NULL, 'king@gmail.com', NULL, '00.jpg', NULL, '123456', 'male', NULL, 3003, '2020-06-20 03:40:01', '2020-06-20 03:40:01', 0);
+INSERT INTO `user_info` VALUES (12, 'queen', NULL, 'queen@gmail.com', NULL, 'aa468ab594ab42aa95a051d3200fa0a8.jpg', NULL, '123456', 'female', NULL, 3001, '2020-07-08 23:12:04', '2020-07-08 23:12:04', 0);
+INSERT INTO `user_info` VALUES (13, 'queens', NULL, 'queens@gmail.com', NULL, '327a77b179994e04aceebd39e24b7c2f.', NULL, '123456', 'male', NULL, 3001, '2020-07-09 10:35:50', '2020-07-09 10:35:50', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -26,7 +26,7 @@ public interface IBookMapper {
           @Result(column = "book_scope",property = "bookScope"),
           @Result(column = "book_brief_introduction",property = "introduction"),
           @Result(column = "book_price",property = "price"),
-          @Result(column = "publish_date",property = "publishDate"),
+          @Result(column = "published_date",property = "publishDate"),
           @Result(column = "book_cover",property = "cover"),
   })
   @Select("select * from book_info order by create_time desc")
