@@ -1,4 +1,4 @@
-package com.qiusamin.book.saas.endpoint.contorller;
+package com.qiusamin.book.saas.contorller;
 
 import com.qiusamin.book.saas.domain.common.OutParams;
 import com.qiusamin.book.saas.domain.vo.LoginVO;
@@ -18,7 +18,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +45,10 @@ public class HerfController {
     public String profile(ModelAndView modelAndView,@RequestParam(name = "userId",required = false) long userId){
         return "profile";
     }
+    @RequestMapping(value = "/profile/edit",method = RequestMethod.GET)
+    public String editUser(ModelAndView modelAndView,@RequestParam(name = "userId",required = false) long userId){
+        return "profile-edit";
+    }
 
     @RequestMapping("/user/list")
     public ModelAndView userList(ModelAndView modelAndView){
@@ -57,6 +64,29 @@ public class HerfController {
 
     @RequestMapping(value = "/user/add",method = RequestMethod.GET)
     public ModelAndView addUser(ModelAndView modelAndView){
+        modelAndView.setViewName("add-user");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/add/user",method = RequestMethod.POST)
+    public ModelAndView userAdd(ModelAndView modelAndView,@Valid @ModelAttribute UserVO userVO,HttpServletRequest request){
+        String fileName;
+        String staticPath = this.getClass().getClassLoader().getResource("static/images/user").getFile();
+        if (userVO.getHeadImageFile().getOriginalFilename()!=null){
+            try {
+                fileName = FileUtils.upload(userVO.getHeadImageFile(), request,staticPath);
+            } catch (IOException e) {
+                log.error(e.getMessage());
+                modelAndView.setViewName("pages-error-500");
+                return modelAndView;
+            }
+            if (!StringUtils.isEmpty(fileName)){
+                userVO.setHeadImage(fileName);
+            }else {
+                userVO.setHeadImage("00.jpg");
+            }
+        }
+        userService.addUserInfo(userVO);
         modelAndView.setViewName("add-user");
         return modelAndView;
     }
@@ -191,10 +221,11 @@ public class HerfController {
 
     @PostMapping("/edit/userBase")
     public ModelAndView edit(ModelAndView modelAndView, @Valid @ModelAttribute UserVO userVO,HttpServletRequest request){
+        String staticPath = this.getClass().getClassLoader().getResource("static/images/user").getFile();
         String fileName =null;
         if ("00.jpg".equals(userVO.getHeadImage())||userVO.getHeadImageFile().getOriginalFilename()!=null){
             try {
-                fileName = FileUtils.upload(userVO.getHeadImageFile(), request);
+                fileName = FileUtils.upload(userVO.getHeadImageFile(), request,staticPath);
             } catch (IOException e) {
                 log.error(e.getMessage());
                 modelAndView.setViewName("pages-error-500");

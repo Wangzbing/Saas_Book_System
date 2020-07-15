@@ -30,14 +30,14 @@
                             </div>
                         </div>
                         <div class="iq-card-body">
-                            <form>
+                            <form th:action="@{/add/user}" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <div class="add-img-user profile-img-edit">
                                         <img class="profile-pic img-fluid" src="../static/images/user/11.png" alt="profile-pic">
                                         <div class="p-image">
                                             <a href="javascript:void();" class="upload-button btn iq-bg-primary">File
                                                 Upload</a>
-                                            <input class="file-upload" type="file" accept="image/*">
+                                            <input class="file-upload" name="headImageFile" type="file" accept="image/*">
                                         </div>
                                     </div>
                                     <div class="img-extension mt-3">
@@ -51,20 +51,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>User Role:</label>
-                                    <select class="form-control" id="selectuserrole">
-                                        <option>Select</option>
-                                        <option>Platform Admin</option>
-                                        <option>SaaS Admin</option>
-                                        <option>Client User</option>
-                                        <option>SaaS User</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="lurl">web Url:</label>
                                     <input type="text" class="form-control" id="lurl" placeholder="Linkedin Url">
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -77,30 +66,38 @@
                         </div>
                         <div class="iq-card-body">
                             <div class="new-user-info">
-                                <form>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label for="fname">First Name:</label>
-                                            <input type="text" class="form-control" id="fname" placeholder="First Name">
+                                            <label for="userName">First Name:</label>
+                                            <input type="text" class="form-control" id="userName" name="userName" placeholder="user Name">
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="lname">Last Name:</label>
-                                            <input type="text" class="form-control" id="lname" placeholder="Last Name">
+                                        <div class="form-group col-sm-6">
+                                            <label class="d-block">Gender:</label>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" id="customRadio6" name="userSex"
+                                                       class="custom-control-input" value="male">
+                                                <label class="custom-control-label" for="customRadio6">
+                                                    Male </label>
+                                            </div>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" id="customRadio7" name="userSex"
+                                                       class="custom-control-input" value="female">
+                                                <label class="custom-control-label" for="customRadio7">
+                                                    Female </label>
+                                            </div>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="add1">Street Address:</label>
-                                            <input type="text" class="form-control" id="add1"
-                                                   placeholder="Street Address 1">
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="cname">Company Name:</label>
-                                            <input type="text" class="form-control" id="cname"
-                                                   placeholder="Company Name">
+                                        <div class="form-group col-sm-12">
+                                            <label>Address:</label>
+                                            <textarea class="form-control" name="userAddress" rows="5"
+                                                      style="line-height: 22px;">
+37 Cardinal Lane
+Petersburg, VA 23803
+United States of America
+                                             </textarea>
                                         </div>
                                         <div class="form-group col-sm-12">
                                             <label>Country:</label>
-                                            <select class="form-control" id="selectcountry">
-                                                <option>Select Country</option>
+                                            <select class="form-control" id="exampleFormControlSelect3" name="userCountry">
                                                 <option>Caneda</option>
                                                 <option>Noida</option>
                                                 <option>USA</option>
@@ -110,29 +107,25 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="mobno">Mobile Number:</label>
-                                            <input type="text" class="form-control" id="mobno"
+                                            <input type="text" class="form-control" name="userPhone" id="mobno"
                                                    placeholder="Mobile Number">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="email">Email:</label>
-                                            <input type="email" class="form-control" id="email" placeholder="Email">
+                                            <input type="email" class="form-control" name="userEmail" id="email" placeholder="Email">
                                         </div>
                                     </div>
                                     <hr>
                                     <h5 class="mb-3">Security</h5>
                                     <div class="row">
-                                        <div class="form-group col-md-12">
-                                            <label for="uname">User Name:</label>
-                                            <input type="text" class="form-control" id="uname" placeholder="User Name">
-                                        </div>
                                         <div class="form-group col-md-6">
                                             <label for="pass">Password:</label>
-                                            <input type="password" class="form-control" id="pass"
+                                            <input type="password" class="form-control" name="userPassword" id="pass"
                                                    placeholder="Password">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="rpass">Repeat Password:</label>
-                                            <input type="password" class="form-control" id="rpass"
+                                            <input type="password" class="form-control" name="newPassword" id="rpass"
                                                    placeholder="Repeat Password ">
                                         </div>
                                     </div>

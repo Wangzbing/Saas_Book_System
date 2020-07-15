@@ -74,4 +74,11 @@ public interface IUserService {
    * @return the out params
    */
   OutParams<Object> editPassword(PasswordVO passwordVO);
+
+  /**
+   * add user
+   * @param userVO userInfo
+   * @return  the out params
+   */
+  OutParams<Object> addUserInfo(UserVO userVO);
 }

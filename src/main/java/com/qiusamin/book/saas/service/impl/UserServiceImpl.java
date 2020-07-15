@@ -154,4 +154,37 @@ public class UserServiceImpl implements IUserService {
         }
         return out;
     }
+
+    /**
+     * add user
+     *
+     * @param userVO userInfo
+     * @return the out params
+     */
+    @Override
+    public OutParams<Object> addUserInfo(UserVO userVO) {
+        OutParams<Object> out = new OutParams<>();
+        // handle email to lowercase
+        String s = userVO.getUserEmail().toLowerCase();
+        userVO.setUserEmail(s);
+        UserEntity userEntity = new UserEntity();
+        BeanUtils.copyProperties(userVO,userEntity);
+        userEntity.setJoinDate(new Date());
+        // The current avatar defaults to 00.jpg, which can be modified after login
+        // user status 3003 mean the account must wait admin to audit
+        userEntity.setUserStatus(3001);
+        userEntity.setDeleted(false);
+        userEntity.setCreateTime(new Date());
+        int count = userMapper.addSignUser(userEntity);
+        if (userEntity.getUserId()>0){
+            out.setFlag(Boolean.TRUE);
+            out.setMessage("success");
+            out.setT(userEntity);
+            return out;
+        }else {
+            out.setFlag(false);
+            out.setMessage("insert fail");
+            return out;
+        }
+    }
 }

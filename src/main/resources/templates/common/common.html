@@ -55,20 +55,10 @@
                     </li>
                     <li class="iq-menu-title"><i class="ri-subtract-line">
                     </i><span>User Center</span></li>
-                    <li>
-                        <a th:href="@{/profile(${session.userInfo.userId})}" class="iq-waves-effect">
-                            <i class="ri-profile-line"></i><span>User Profile</span></a>
-                    </li>
-                    <li><a th:href="@{/profile/edit(${session.userInfo.userId})}" class="iq-waves-effect"><i class="ri-file-edit-line"></i>
+                    <li><a th:href="@{/edit/(userId=${session.userInfo.userId})}" class="iq-waves-effect"><i class="ri-file-edit-line"></i>
                         <span>User Edit</span></a></li>
                     <li><a th:href="@{/user/add}" class="iq-waves-effect"><i class="ri-user-add-line" ></i><span>User Add</span></a></li>
                     <li><a th:href="@{/user/list}" class="menu_list iq-waves-effect"><i class="ri-file-list-line"></i><span>User List</span></a></li>
-                    <li class="iq-menu-title"><i class="ri-subtract-line">
-                    </i><span>Message Center</span></li>
-                    <li><a th:href="@{/message/list}" class="user_list iq-waves-effect"><i class="ri-profile-line"></i><span>SaaS Message</span></a>
-                    </li>
-                    <li><a th:href="@{/message/add}" class="iq-waves-effect" ><i class="ri-user-add-line"></i><span>Message Add</span></a></li>
-                    <li><a th:href="@{/message/listAll}" class="iq-waves-effect"><i class="ri-file-list-line"></i><span>Message List</span></a></li>
                     <li class="iq-menu-title"><i class="ri-subtract-line">
                     </i><span>App </span></li>
                     <li><a th:href="@{/todo}" class="iq-waves-effect"><i
