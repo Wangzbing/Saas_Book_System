@@ -4107,7 +4107,10 @@ Profile Edit
     border-radius: 50%;
     -webkit-border-radius: 50%;
 }
-
+.book-pic {
+    max-width: 100%;
+    display: block;
+}
 .profile-img-edit {
     position: relative;
     display: inline-block;

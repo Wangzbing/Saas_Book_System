@@ -1,0 +1,172 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+   <head th:insert="common/common::commonHeader"></head>
+</head>
+<body>
+<!-- loader Start -->
+<div id="loading">
+    <div id="loading-center">
+    </div>
+</div>
+<!-- loader END -->
+<!-- Wrapper Start -->
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <div th:insert="common/common::sidebar_base"></div>
+    <!-- TOP Nav Bar -->
+    <div th:insert="common/common::top_nav_bar"></div>
+    <!-- TOP Nav Bar END -->
+    <!-- Page Content  -->
+    <div id="content-page" class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="iq-card">
+                        <div class="iq-card-body p-0">
+                            <div class="iq-edit-list">
+                                <ul class="iq-edit-profile d-flex nav nav-pills">
+                                    <li class="col-md-6 p-0">
+                                        <a class="nav-link active" data-toggle="pill" href="#Book-Base-Information">
+                                            Book Base Information
+                                        </a>
+                                    </li>
+                                    <li class="col-md-6 p-0">
+                                        <a class="nav-link" data-toggle="pill" href="#Book-Sale-Information">
+                                            Book Sale Information
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="iq-edit-list-data">
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="Book-Base-Information" role="tabpanel">
+                                <div class="iq-card">
+                                    <div class="iq-card-header d-flex justify-content-between">
+                                        <div class="iq-header-title">
+                                            <h4 class="card-title">Base Information</h4>
+                                        </div>
+                                    </div>
+                                    <div class="iq-card-body">
+                                        <form th:action="@{/book/edit/base}" method="post" enctype="multipart/form-data">
+                                            <input type="text"  name="userId" th:value="${data.bookId}" hidden>
+                                            <div class="form-group row align-items-center">
+                                                <div class="col-md-12">
+                                                    <div class="profile-img-edit">
+                                                        <img class="profile-pic" th:src="${data.cover}" multiple="multiple" alt="profile-pic" height="150px" width="150px">
+                                                        <div class="p-image">
+                                                            <i class="ri-pencil-line upload-button"></i>
+                                                            <input class="file-upload" type="file" name="coverFile" accept="image/*"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class=" row align-items-center">
+                                                <div class="form-group col-md-6">
+                                                    <label for="bookName">Book Name:</label>
+                                                    <input type="text" class="form-control" id="bookName" name="bookName" th:value="${data.bookName}">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="bookAuthor">Book Author:</label>
+                                                    <input type="text" class="form-control" id="bookAuthor" name="bookAuthor" th:value="${data.bookAuthor}">
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label>Introduction:</label>
+                                                    <textarea class="form-control" name="introduction" rows="5"
+                                                              style="line-height: 22px;" th:text="${data.introduction}">
+                                                    </textarea>
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="bookPublisher">Book Publisher:</label>
+                                                    <input type="text" class="form-control" id="bookPublisher" name="bookPublisher" th:value="${data.bookPublisher}">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="publishDate">Publish Date:</label>
+                                                    <input type="text" class="form-control" name="publishDate" id="publishDate" th:value="${#dates.format(data.publishDate, 'yyyy-MM-dd')}">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="bookIsbn">Book ISBN:</label>
+                                                    <input type="text" class="form-control" name="bookIsbn" id="bookIsbn" th:text="${data.bookIsbn}">
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                            <button type="reset" class="btn iq-bg-danger">Cancle</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="Book-Sale-Information" role="tabpanel">
+                                <div class="iq-card">
+                                    <div class="iq-card-header d-flex justify-content-between">
+                                        <div class="iq-header-title">
+                                            <h4 class="card-title">Book Sale Info</h4>
+                                        </div>
+                                    </div>
+                                    <div class="iq-card-body">
+                                        <form th:action="@{/book/edit/detail}" method="post">
+                                            <input type="text"  name="userId" th:value="${data.bookId}" hidden>
+                                            <div class="form-group col-md-6">
+                                                <label for="scope">Scope:</label>
+                                                <input type="text" class="form-control" name="bookScope" id="scope" th:value="${data.bookScope}">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="price">Price:</label>
+                                                <input type="text" class="form-control"  name="price" id="price" th:value="${data.price}">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="store">Store Number:</label>
+                                                <input type="text" name="storeNumber" class="form-control" id="store" th:value="${data.storeNumber}">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                            <button type="reset" class="btn iq-bg-danger">Cancle</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Wrapper END -->
+<footer th:insert="common/common::commonFooter"></footer>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<!-- Appear JavaScript -->
+<script src="../static/js/jquery.appear.js"></script>
+<!-- Countdown JavaScript -->
+<script src="../static/js/countdown.min.js"></script>
+<!-- Counterup JavaScript -->
+<script src="../static/js/waypoints.min.js"></script>
+<script src="../static/js/jquery.counterup.min.js"></script>
+<!-- Wow JavaScript -->
+<script src="../static/js/wow.min.js"></script>
+<!-- Apexcharts JavaScript -->
+<script src="https://cdn.bootcdn.net/ajax/libs/apexcharts/3.11.0/apexcharts.min.js"></script>
+<!-- Slick JavaScript -->
+<script src="../static/js/slick.min.js"></script>
+<!-- Select2 JavaScript -->
+<script src="../static/js/select2.min.js"></script>
+<!-- Owl Carousel JavaScript -->
+<script src="../static/js/owl.carousel.min.js"></script>
+<!-- Magnific Popup JavaScript -->
+<script src="../static/js/jquery.magnific-popup.min.js"></script>
+<!-- Smooth Scrollbar JavaScript -->
+<script src="../static/js/smooth-scrollbar.js"></script>
+<!-- lottie JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.8/lottie.js"></script>
+<!-- Chart Custom JavaScript -->
+<script src="../static/js/chart-custom.js"></script>
+<!-- Custom JavaScript -->
+<script src="../static/js/custom.js"></script>
+</body>
+</html>

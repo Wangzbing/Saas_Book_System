@@ -112,24 +112,27 @@
                                         <td th:text="${m.bookScope}"></td>
                                         <td th:if="${m.introduction!=''}">
                                             <span style="top: 10px">
-                                                <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"><span th:text="${m.introduction.substring(0,4)+'....'}"></span></a><br>　　　　
+                                                <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
+                                                    <span th:text="${m.introduction.substring(0,6)+'  ....'}"></span>
+                                                </a>
                                             </span>
-                                            <span id="light" class="white_content"><br>　<span th:text="${m.introduction}"></span>
-                                                <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">close<br></a><br>　　　　　
+                                            <span id="light" class="white_content">
+                                                <span th:text="${m.introduction}"></span>
+                                                <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">close</a>　　　　　
                                             </span>
                                             <span id="fade" class="black_overlay"></span>
                                         </td>
-                                        <td th:text="${m.price}"></td>
+                                        <td th:text="${'$'+m.price}"></td>
                                         <td th:text="${#dates.format(m.publishDate, 'yyyy-MM-dd')}"></td>
                                         <td>
                                             <div class="flex align-items-center list-user-action">
                                                 <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
                                                    title="" data-original-title="Edit"
-                                                   th:href="@{/edit(userId=${m.bookId})}"><i
+                                                   th:href="@{/book/edit(bookId=${m.bookId})}"><i
                                                         class="ri-pencil-line"></i></a>
                                                 <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
                                                    title="" data-original-title="Delete"
-                                                   th:href="@{/delete(userId=${m.bookId})}"><i
+                                                   th:href="@{/book/delete(bookId=${m.bookId})}"><i
                                                         class="ri-delete-bin-line"></i></a>
                                             </div>
                                         </td>

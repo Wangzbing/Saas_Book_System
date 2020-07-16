@@ -20,4 +20,6 @@ public class BookListVo {
     private String price;
     private Date publishDate;
     private String cover;
+    private Integer storeNumber;
+    private String bookIsbn;
 }
