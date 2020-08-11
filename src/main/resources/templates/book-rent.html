@@ -1,0 +1,198 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <head th:insert="common/common::commonHeader"></head>
+</head>
+<body>
+<!-- loader Start -->
+<div id="loading">
+    <div id="loading-center">
+    </div>
+</div>
+<!-- loader END -->
+<!-- Wrapper Start -->
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <div th:insert="common/common::sidebar_base">
+    </div>
+    <!-- TOP Nav Bar -->
+    <div th:insert="common/common::top_nav_bar">
+    </div>
+    <!-- TOP Nav Bar END -->
+    <!-- Page Content  -->
+    <div id="content-page" class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="iq-card">
+
+                        <div class="iq-card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h5 class="mb-0" th:text="'Hello,'+${session.userInfo.userName}"></h5>
+                                    <p>The following list is your recent book borrowing data,
+                                        please return the books before the deadline</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive-sm">
+                                        <!--self account information-->
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">VIP</th>
+                                                <th scope="col">Account Status</th>
+                                                <th scope="col">VIP Manager Phone</th>
+                                                <th scope="col">Billing Address</th>
+                                                <th scope="col">User Account Money</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td th:if="'Bronze'==${bizList.getVipLevel()}"><span class="badge badge-success">Bronze</span></td>
+                                                <td th:if="'Silver'==${bizList.getVipLevel()}"><span class="badge badge-pill">Silver</span></td>
+                                                <td th:if="'Diamond'==${bizList.getVipLevel()}"><span class="badge badge-warning">Diamond</span></td>
+                                                <td><span class="badge badge-danger" th:text="${bizList.getStatus()}">Active</span></td>
+                                                <td th:text="${bizList.getManagerPhone()}">+01 89076788</td>
+                                                <td th:text="${bizList.getAddress()}">
+
+                                                </td>
+                                                <td th:text="${bizList.getUserAccount()}">
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h5>Rent Summary</h5>
+                                    <div class="table-responsive-sm">
+                                        <!--rent list-->
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center" scope="col">#</th>
+                                                <th scope="col">Book Name</th>
+                                                <th class="text-center" scope="col">Rent Date</th>
+                                                <th class="text-center" scope="col">Deadline</th>
+                                                <th class="text-center" scope="col">Status</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="m,count:${bizList.getRentList()}">
+                                                <th class="text-center" scope="row" th:text="${count.count}"></th>
+                                                <td>
+                                                    <h6 class="mb-0" th:text="${m.getBookName()}"></h6>
+                                                </td>
+                                                <td class="text-center" th:text="${#dates.format(m.rentTime, 'yyyy-MM-dd')}"></td>
+                                                <td class="text-center" th:text="${#dates.format(m.endTime, 'yyyy-MM-dd')}"></td>
+                                                <td class="text-center"><p class="badge badge-danger" th:text="${m.getStatusName()}"></p></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <h5 class="mt-5">Sale Details</h5>
+                                    <div class="table-responsive-sm">
+                                        <!--buy list-->
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Book Name</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Number</th>
+                                                <th scope="col">DisCount</th>
+                                                <th scope="col">Total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="m,count:${bizList.getSaleList()}">
+                                                <th scope="row" th:text="${count.count}"></th>
+                                                <td th:text="${m.getBookName()}"></td>
+                                                <td th:text="'$'+${m.getPrice()}"></td>
+                                                <td th:text="${m.getNumber()}"></td>
+                                                <td th:text="${m.getDiscount()}"></td>
+                                                <td th:text="'$'+${m.getTotal()}"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6"></div>
+                                <div class="col-sm-6 text-right">
+                                    <button type="button" class="btn btn-link mr-3"><i class="ri-printer-line"></i>
+                                        Download Print
+                                    </button>
+                                </div>
+                                <div class="col-sm-12 mt-5">
+                                    <b class="text-danger">Notes:</b>
+                                    <p>It is a long established fact that a reader will be distracted by the readable
+                                        content of a page when looking at its layout. The point of using Lorem Ipsum is
+                                        that it has a more-or-less normal distribution of letters, as opposed to using
+                                        'Content here, content here', making it look like readable English.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Wrapper END -->
+<!-- Footer -->
+<footer class="bg-white iq-footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item"><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li class="list-inline-item"><a href="terms-of-service.html">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-6 text-right">
+                Copyright 2020 <a href="#">Vito</a> All Rights Reserved.
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer END -->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<!-- Appear JavaScript -->
+<script src="../static/js/jquery.appear.js"></script>
+<!-- Countdown JavaScript -->
+<script src="../static/js/countdown.min.js"></script>
+<!-- Counterup JavaScript -->
+<script src="../static/js/waypoints.min.js"></script>
+<script src="../static/js/jquery.counterup.min.js"></script>
+<!-- Wow JavaScript -->
+<script src="../static/js/wow.min.js"></script>
+<!-- Apexcharts JavaScript -->
+<script src="https://cdn.bootcdn.net/ajax/libs/apexcharts/3.11.0/apexcharts.min.js"></script>
+<!-- Slick JavaScript -->
+<script src="../static/js/slick.min.js"></script>
+<!-- Select2 JavaScript -->
+<script src="../static/js/select2.min.js"></script>
+<!-- Owl Carousel JavaScript -->
+<script src="../static/js/owl.carousel.min.js"></script>
+<!-- Magnific Popup JavaScript -->
+<script src="../static/js/jquery.magnific-popup.min.js"></script>
+<!-- Smooth Scrollbar JavaScript -->
+<script src="../static/js/smooth-scrollbar.js"></script>
+<!-- lottie JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.8/lottie.js"></script>
+<!-- Chart Custom JavaScript -->
+<script src="../static/js/chart-custom.js"></script>
+<!-- Custom JavaScript -->
+<script src="../static/js/custom.js"></script>
+</body>
+</html>

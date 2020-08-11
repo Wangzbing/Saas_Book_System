@@ -1,11 +1,9 @@
 package com.qiusamin.book.saas.contorller;
 
 import com.qiusamin.book.saas.domain.common.OutParams;
-import com.qiusamin.book.saas.domain.vo.LoginVO;
-import com.qiusamin.book.saas.domain.vo.PasswordVO;
-import com.qiusamin.book.saas.domain.vo.SignUpVO;
-import com.qiusamin.book.saas.domain.vo.UserVO;
+import com.qiusamin.book.saas.domain.vo.*;
 import com.qiusamin.book.saas.service.IUserService;
+import com.qiusamin.book.saas.service.IndexService;
 import com.qiusamin.book.saas.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -35,11 +33,8 @@ public class HerfController {
 
     @Resource
     private IUserService userService;
-
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
-    public String index(ModelAndView modelAndView){
-        return "index";
-    }
+    @Resource
+    private IndexService indexService;
 
     @RequestMapping(value = "/profile",method = RequestMethod.GET)
     public String profile(ModelAndView modelAndView,@RequestParam(name = "userId",required = false) long userId){
@@ -120,10 +115,13 @@ public class HerfController {
                 modelAndView.setViewName("audit");
                 return modelAndView;
             }
-            modelAndView.getModel().put("userInfo",userVO);
             HttpSession session = request.getSession(true);
             session.setAttribute("userInfo",userVO);
             session.setAttribute("locked",Boolean.FALSE);
+            IndexVO indexInfo = indexService.getIndexInfo();
+            Map<String, Object> model = modelAndView.getModel();
+            model.put("indexInfo",indexInfo);
+            model.put("userInfo",userVO);
             modelAndView.setViewName("index");
         } else {
             modelAndView.setViewName("sign-in");
@@ -162,16 +160,21 @@ public class HerfController {
     }
 
     @PostMapping("/unlock")
-    public String unlock(ModelAndView modelAndView,String password,HttpServletRequest request){
+    public ModelAndView unlock(ModelAndView modelAndView,String password,HttpServletRequest request){
         HttpSession session = request.getSession(true);
         Object userInfo = session.getAttribute("userInfo");
         UserVO userVO = new UserVO();
         BeanUtils.copyProperties(userInfo,userVO);
         if (userVO.getUserPassword().equals(password)){
             session.setAttribute("locked",Boolean.FALSE);
-            return "index";
+            IndexVO indexInfo = indexService.getIndexInfo();
+            Map<String, Object> model = modelAndView.getModel();
+            model.put("indexInfo",indexInfo);
+            modelAndView.setViewName("index");
+            return modelAndView;
         }
-        return "pages-lock-screen";
+        modelAndView.setViewName("pages-lock-screen");
+        return modelAndView;
     }
 
     @GetMapping("/signUp")

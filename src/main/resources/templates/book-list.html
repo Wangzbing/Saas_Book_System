@@ -90,7 +90,7 @@
                                        aria-describedby="user-list-page-info">
                                     <thead>
                                     <tr>
-                                        <th>Index</th>
+                                        <th>Book Cover</th>
                                         <th>Name</th>
                                         <th>Author</th>
                                         <th>Publisher</th>
@@ -102,9 +102,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="m:${bookList}">
+                                    <tr th:each="m,count:${bookList}">
                                         <td class="text-center">
-                                            <img th:src="@{${m.cover}}" class="rounded-circle img-fluid avatar-40" alt="profile">
+                                            <img th:src="@{${m.cover}}" class="rounded-circle img-fluid avatar-40" alt="profile" th:onclick="openImage([[${m.cover}]])">
+                                            <span id="indexImage" class="white_content">　　　　
+                                            </span>
+                                            <span id="all" class="black_overlay"></span>
                                         </td>
                                         <td th:text="${m.bookName}"></td>
                                         <td th:text="${m.bookAuthor}"></td>
@@ -112,13 +115,11 @@
                                         <td th:text="${m.bookScope}"></td>
                                         <td th:if="${m.introduction!=''}">
                                             <span style="top: 10px">
-                                                <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
+                                                <a href="#" th:onclick="openPop([[${m.introduction}]])">
                                                     <span th:text="${m.introduction.substring(0,6)+'  ....'}"></span>
                                                 </a>
                                             </span>
-                                            <span id="light" class="white_content">
-                                                <span th:text="${m.introduction}"></span>
-                                                <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">close</a>　　　　　
+                                            <span id="light" class="white_content">　　　　
                                             </span>
                                             <span id="fade" class="black_overlay"></span>
                                         </td>
@@ -134,6 +135,14 @@
                                                    title="" data-original-title="Delete"
                                                    th:href="@{/book/delete(bookId=${m.bookId})}"><i
                                                         class="ri-delete-bin-line"></i></a>
+                                                <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
+                                                   title="" data-original-title="Rent"
+                                                   th:href="@{/biz/rent(bookId=${m.bookId})}"><i
+                                                        class="ri-archive-drawer-line"></i></a>
+                                                <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
+                                                   title="" data-original-title="Sale"
+                                                   th:href="@{/biz/sale(bookId=${m.bookId})}"><i
+                                                        class="ri-bookmark-2-fill"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -184,6 +193,29 @@
         </div>
     </div>
 </footer>
+<script type="text/javascript">
+    function openImage(imageSrc) {
+        document.getElementById('indexImage').style.display='block';
+        document.getElementById('all').style.display='block';
+        document.getElementById('indexImage').innerHTML=
+            '<img src='+imageSrc+' class="rounded-circle img-fluid" >' +
+            '<a href="javascript:void();" onclick="closeImage()">close</a>';
+    }
+    function closeImage() {
+        document.getElementById('indexImage').style.display='none';
+        document.getElementById('all').style.display='none';
+    }
+    function openPop(texts) {
+        document.getElementById('light').style.display='block';
+        document.getElementById('fade').style.display='block';
+        document.getElementById('light').innerHTML=
+            texts+'<a href="javascript:void();" onclick="closePop()">close</a>';
+    }
+    function closePop() {
+        document.getElementById('light').style.display='none';
+        document.getElementById('fade').style.display='none';
+    }
+</script>
 <!-- Footer END -->
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

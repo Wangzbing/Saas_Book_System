@@ -1059,6 +1059,12 @@ Avatar Size
     line-height: 130px;
     font-size: 1.6rem;
 }
+.avatar-200 {
+    height: 200px;
+    width: 200px;
+    line-height: 200px;
+    font-size: 1.6rem;
+}
 
 /*----------------------------------------------
 Margin Bottom

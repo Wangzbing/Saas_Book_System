@@ -1,19 +1,16 @@
 package com.qiusamin.book.saas.contorller.book;
 
-import com.qiusamin.book.saas.domain.vo.BookAddVO;
-import com.qiusamin.book.saas.domain.vo.BookListVo;
-import com.qiusamin.book.saas.domain.vo.UserVO;
+import com.qiusamin.book.saas.domain.vo.*;
 import com.qiusamin.book.saas.service.IBookService;
 import com.qiusamin.book.saas.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.File;
@@ -96,5 +93,48 @@ public class ManagerController {
         }
         return getBookList(modelAndView);
     }
-
+    @PostMapping("/base")
+    public ModelAndView editBaseInfo(ModelAndView modelAndView, @ModelAttribute @Valid BookEditBaseVO editBaseVO,HttpServletRequest request){
+        String fileName;
+        String staticPath = this.getClass().getClassLoader().getResource(coverPath).getFile();
+        MultipartFile coverFile = editBaseVO.getCoverFile();
+        String originalFilename = coverFile.getOriginalFilename();
+        if (originalFilename.length()>0){
+            try {
+                fileName = FileUtils.upload(editBaseVO.getCoverFile(), request,staticPath);
+            } catch (IOException e) {
+                log.error(e.getMessage());
+                modelAndView.setViewName("pages-error-500");
+                return modelAndView;
+            }
+            if (!StringUtils.isEmpty(fileName)){
+                editBaseVO.setCover(".." + File.separator + coverPath + File.separator + fileName);
+            }else {
+                editBaseVO.setCover(".." + File.separator + coverPath + File.separator + "00.jpg");
+            }
+        }
+        try {
+            bookService.editBaseInfo(editBaseVO);
+        } catch (ParseException e) {
+            log.error(e.getMessage());
+            modelAndView.setViewName("pages-error-500");
+            return modelAndView;
+        }
+        return getBookList(modelAndView);
+    }
+    @PostMapping("/detail")
+    public ModelAndView editDetail(ModelAndView modelAndView, @ModelAttribute @Valid BookSaleInfoVO saleInfo){
+        bookService.editDetail(saleInfo);
+        return getBookList(modelAndView);
+    }
+    @GetMapping("/delete")
+    public ModelAndView deletedBook(ModelAndView modelAndView,@RequestParam("bookId")Long bookId){
+        bookService.deletedBook(bookId);
+        return getBookList(modelAndView);
+    }
+    @GetMapping("/rent")
+    public ModelAndView initRentBook(ModelAndView modelAndView){
+        modelAndView.setViewName("book-rent");
+        return modelAndView;
+    }
 }

@@ -52,8 +52,8 @@
                                         </div>
                                     </div>
                                     <div class="iq-card-body">
-                                        <form th:action="@{/book/edit/base}" method="post" enctype="multipart/form-data">
-                                            <input type="text"  name="userId" th:value="${data.bookId}" hidden>
+                                        <form th:action="@{/book/base}" method="post" enctype="multipart/form-data">
+                                            <input type="text" name="bookId" th:value="${data.bookId}" hidden>
                                             <div class="form-group row align-items-center">
                                                 <div class="col-md-12">
                                                     <div class="profile-img-edit">
@@ -90,7 +90,7 @@
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="bookIsbn">Book ISBN:</label>
-                                                    <input type="text" class="form-control" name="bookIsbn" id="bookIsbn" th:text="${data.bookIsbn}">
+                                                    <input type="text" class="form-control" name="bookIsbn" id="bookIsbn" th:value="${data.bookIsbn}">
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -107,8 +107,8 @@
                                         </div>
                                     </div>
                                     <div class="iq-card-body">
-                                        <form th:action="@{/book/edit/detail}" method="post">
-                                            <input type="text"  name="userId" th:value="${data.bookId}" hidden>
+                                        <form th:action="@{/book/detail}" method="post">
+                                            <input type="text"  name="bookId" th:value="${data.bookId}" hidden>
                                             <div class="form-group col-md-6">
                                                 <label for="scope">Scope:</label>
                                                 <input type="text" class="form-control" name="bookScope" id="scope" th:value="${data.bookScope}">

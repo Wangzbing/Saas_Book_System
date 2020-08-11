@@ -45,6 +45,9 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 100MB
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
 # mybatis config
 mybatis:
   mapper-locations:
